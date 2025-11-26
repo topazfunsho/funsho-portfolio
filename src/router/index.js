@@ -26,11 +26,7 @@ const routes = [
     name: 'contact',
     component: Contact
   },
-  {
-    path: '/searchmodal',
-    name: 'searchmodal',
-    component: SearchModal
-  },
+
 ]
 
 const router = createRouter({

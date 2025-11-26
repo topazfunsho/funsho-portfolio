@@ -1,32 +1,57 @@
 <template>
-
+<div class="modal">
     <div class="search-modal">
-        <form @submit.prevent="handleSearch">
+       <div class="container">
+        <div><i @click="closeModal"><X :size="70" /></i></div>
+         <form @submit.prevent="handleSearch">
             <input type="text" v-model="search">
-            <button @click="handleSearch">
+            <button @click="handleSearch" class="desktop-search-button">
                 search
             </button>
         </form>
+       </div>
     </div>
-
+    <div v-if="search" class="list">
+        <p v-for="name in matchingNames" :key="name">{{name}}</p>
+    </div>
+    
+    <!-- <p class="list">{{search}}</p> -->
+</div>
   
 </template>
 
 <script>
+import { X } from "lucide-vue-next";
+import { ref, computed } from "vue";
 export default {
     name: 'SearchModal',
-    components: {},
+    components: { X,},
+    data(){
+        const search = ref('')
+        const names = ref(['tuniss', 'john', 'james', 'mary', 'sarah', 'matthew', 'bola'])
+
+      const matchingNames = computed(()=>{
+        return names.value.filter((name) => name.includes(search.value))
+      })
+      return{
+        search,
+        matchingNames,
+        names,
+      }
+    },
     methods:{
         handleSearch(){
 
-        }
+        },
+        closeModal(){
+            this.$emit('close')
+        },
     }
 }
 </script>
 
 <style>
-
-    .search-modal{
+    .modal{
         position: fixed;
         top: 0;
         left: 0;
@@ -38,8 +63,44 @@ export default {
         background: rgba(51, 51, 51, 0.5);
         backdrop-filter: blur(4px);
     }
+    .container{
+        width: 100%;
+        height: auto;
+        text-align: center;
+    }
+    .container i{
+        color: #fff;
+    }
+    form{
+        justify-self: center;
+    }
+    .search-modal, form{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .search-modal{
+
+        position: relative;
+    }
+    .list{
+        background: #fff;
+        color: red;
+        position: absolute;
+        top: 65%;
+        left: 25%;
+        padding: 0 50px;
+        width: 35%;
+        height: auto;
+        overflow: hidden;
+        scroll-behavior: smooth;
+        border-radius: 20px;
+        cursor: pointer;
+    }
     form{
         width: 60%;
+        margin-top: 30px;
     }
     input{
         padding: 20px;
@@ -51,7 +112,7 @@ export default {
         font-size: 20px;
         color: #50C878;
     }
-    button{
+    .desktop-search-button{
         padding: 20px 50px;
         font-size: 20px;
         border-radius: 50px;

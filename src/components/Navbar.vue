@@ -2,7 +2,7 @@
   <div class="desktop">
     <div class="navbar">
       <div class="logo">
-        <router-link :to="{ name: 'home' }">mylogo</router-link>
+        <router-link :to="{ name: 'home' }">Fun<span>Sho</span></router-link>
       </div>
       <div class="nav">
         <ul>
@@ -14,7 +14,7 @@
           <li><router-link :to="{ name: 'contact' }">Contact</router-link></li>
         </ul>
         <div class="search">
-          <i><Search :size="28" stroke="red" /></i>
+          <i @click="toggleModal"><Search :size="28" stroke="red" /></i>
         </div>
       </div>
       <div class="social">
@@ -27,7 +27,7 @@
   <div class="mobile">
     <div class="navbar">
       <div class="logo">
-        <router-link :to="{ name: 'home' }">my mobile logo</router-link>
+        <router-link :to="{ name: 'home' }">Fun<span>Sho</span></router-link>
       </div>
       <div class="menu">
         <i @click="handleMenuOpen" v-if="isOpen"><Menu :size="28" /></i>
@@ -52,11 +52,15 @@
       </div>
     </div>
   </div>
+  <div v-if="showModal">
+    <SearchModal @close="toggleModal"/>
+  </div>
 </template>
 
 <script>
 import { Search, LinkedinIcon, Menu, Instagram, X } from "lucide-vue-next";
 import { ref, computed } from "vue";
+import SearchModal from './SearchModal.vue'
 
 export default {
   name: "Navbar",
@@ -66,6 +70,7 @@ export default {
     Menu,
     Instagram,
     X,
+    SearchModal,
   },
   data(){
     const searchInput = ref('')
@@ -79,7 +84,8 @@ export default {
         isOpen: true,
         searchInput,
         matchingNames,
-        names
+        names,
+        showModal: false,
     }
   },
 
@@ -92,6 +98,9 @@ export default {
       this.isOpen = !this.isOpen
       this.showMenu = !this.showMenu
     },
+    toggleModal(){
+        this.showModal = !this.showModal
+    }
   },
 };
 </script>
@@ -113,6 +122,15 @@ Teal (#20B2AA)
  button{
     border: none;
     outline: none;
+ }
+ .logo a{
+    color: #000;
+    text-decoration: none;
+    font-weight: bolder;
+    font-size: 20px;
+ }
+ .logo a span{
+    color: red;
  }
 .navbar,
 .nav {
