@@ -5,21 +5,16 @@
         <router-link :to="{ name: 'home' }">Fun<span>Sho</span></router-link>
       </div>
       <div class="nav">
-        <ul>
-          <li><router-link :to="{ name: 'home' }">Home</router-link></li>
-          <li><router-link :to="{ name: 'about' }">About</router-link></li>
-          <li>
-            <router-link :to="{ name: 'projects' }">Projects</router-link>
-          </li>
-          <li><router-link :to="{ name: 'contact' }">Contact</router-link></li>
-        </ul>
+        <router-link :to="{ name: 'home' }">Home</router-link>
+        <router-link :to="{ name: 'about' }">About</router-link>
+
+        <router-link :to="{ name: 'projects' }">Projects</router-link>
+
+        <router-link :to="{ name: 'contact' }">Contact</router-link>
+
         <div class="search">
           <i @click="toggleModal"><Search :size="28" stroke="red" /></i>
         </div>
-      </div>
-      <div class="social">
-        <i><LinkedinIcon size="20" stroke="#0A66C2" /></i>
-        <i><Instagram size="20" /></i>
       </div>
     </div>
   </div>
@@ -42,65 +37,72 @@
       <router-link :to="{ name: 'contact' }">Contact</router-link>
 
       <div class="mobile-search">
-        <input type="text" v-model="searchInput" placeholder="search projects"/>
-        <button><i><Search :size="35" stroke="red" /></i></button>
-      </div>
-        <!-- <div class="search-list" v-for="name in matchingNames" :key="name">{{name}}</div> -->
-      <div class="social">
-        <i><LinkedinIcon size="30" stroke="#0A66C2" /></i>
-        <i><Instagram size="30" /></i>
+        <input
+          type="text"
+          v-model="searchInput"
+          placeholder="search projects"
+        />
+        <button>
+          <i><Search :size="35" stroke="red" /></i>
+        </button>
       </div>
     </div>
   </div>
   <div v-if="showModal">
-    <SearchModal @close="toggleModal"/>
+    <SearchModal @close="toggleModal" />
   </div>
 </template>
 
 <script>
-import { Search, LinkedinIcon, Menu, Instagram, X } from "lucide-vue-next";
+import { Search, Menu, X } from "lucide-vue-next";
 import { ref, computed } from "vue";
-import SearchModal from './SearchModal.vue'
+import SearchModal from "./SearchModal.vue";
 
 export default {
   name: "Navbar",
   components: {
     Search,
-    LinkedinIcon,
     Menu,
-    Instagram,
     X,
     SearchModal,
   },
-  data(){
-    const searchInput = ref('')
-    const names = ref(['tuniss', 'john', 'james', 'mary', 'sarah', 'matthew', 'bola'])
+  data() {
+    const searchInput = ref("");
+    const names = ref([
+      "tuniss",
+      "john",
+      "james",
+      "mary",
+      "sarah",
+      "matthew",
+      "bola",
+    ]);
 
-      const matchingNames = computed(()=>{
-        return names.value.filter((name) => name.includes(searchInput.value))
-      })
-    return{
-        showMenu: false,
-        isOpen: true,
-        searchInput,
-        matchingNames,
-        names,
-        showModal: false,
-    }
+    const matchingNames = computed(() => {
+      return names.value.filter((name) => name.includes(searchInput.value));
+    });
+    return {
+      showMenu: false,
+      isOpen: true,
+      searchInput,
+      matchingNames,
+      names,
+      showModal: false,
+    };
   },
 
   methods: {
     handleMenuOpen() {
-      this.showMenu = !this.showMenu
-      this.isOpen = !this.isOpen
+      this.showMenu = !this.showMenu;
+      this.isOpen = !this.isOpen;
     },
     handleMenuClose() {
-      this.isOpen = !this.isOpen
-      this.showMenu = !this.showMenu
+      this.isOpen = !this.isOpen;
+      this.showMenu = !this.showMenu;
     },
-    toggleModal(){
-        this.showModal = !this.showModal
-    }
+    toggleModal() {
+      this.showModal = !this.showModal;
+    },
   },
 };
 </script>
@@ -119,19 +121,19 @@ Crimson Red (#DC143C)
 Coral (#FF6F61)
 Teal (#20B2AA)
  */
- button{
-    border: none;
-    outline: none;
- }
- .logo a{
-    color: #000;
-    text-decoration: none;
-    font-weight: bolder;
-    font-size: 20px;
- }
- .logo a span{
-    color: red;
- }
+button {
+  border: none;
+  outline: none;
+}
+.logo a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: bolder;
+  font-size: 20px;
+}
+.logo a span {
+  color: #009833;
+}
 .navbar,
 .nav {
   display: flex;
@@ -139,20 +141,18 @@ Teal (#20B2AA)
   align-items: center;
 }
 .navbar {
-  padding: 1% 5%;
-  background: #f4f4f4;
+  padding: 1% 15%;
+  background: #121212;
+  color: #fff;
   /* position: relative; */
 }
 .nav li,
 .nav a {
   list-style: none;
   display: inline;
-  margin: 2%;
-  color: #333333;
+  margin: 10px;
+  color: #fff;
   font-weight: 400;
-}
-.nav ul {
-  margin-right: 30%;
 }
 .nav a {
   text-decoration: none;
@@ -162,7 +162,8 @@ Teal (#20B2AA)
   color: #009833;
 }
 .search i,
-.social i, .mobile-search i {
+.social i,
+.mobile-search i {
   color: #50c878;
   cursor: pointer;
   /* color: rgb(134, 134, 134); */
@@ -188,18 +189,19 @@ Teal (#20B2AA)
     padding: 20px 20px 10px 20px;
   }
   .mobile-nav {
-    background-color: rgba(229, 229, 229, 0.5);
+    background-color: #2c3e50;
     height: auto;
     position: absolute;
     width: 100%;
-    padding: 10px 0 20px 0;
+    padding: 10px 0 50px 0;
+    border-bottom: 2px solid red;
   }
   .mobile-nav a {
     display: block;
     padding: 10px 20px;
     font-size: 20px;
     text-decoration: none;
-    color: #333333;
+    color: #fff;
   }
   .mobile-nav a.router-link-exact-active {
     background: #009833;
@@ -225,6 +227,9 @@ Teal (#20B2AA)
     display: flex;
     align-items: center;
   }
+  .mobile-search button{
+    background: transparent;
+  }
   .mobile-nav .social i {
     margin: 10px;
     cursor: pointer;
@@ -232,7 +237,7 @@ Teal (#20B2AA)
   .mobile-nav .social {
     background: transparent;
   }
-  .search-list{
+  .search-list {
     padding: 10px 30px;
   }
 }

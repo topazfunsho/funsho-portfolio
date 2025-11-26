@@ -1,15 +1,19 @@
 <template>
   <div class="home">
     <Navbar />
-    home
+    <Hero />
   </div>
 </template>
 
 <script>
 import Navbar from '../components/Navbar.vue'
+import Hero from '../components/Hero.vue'
 
 export default {
   name: 'HomeView',
-  components: { Navbar }
+  components: { Navbar, Hero }
 }
 </script>
+
+<style>
+</style>
