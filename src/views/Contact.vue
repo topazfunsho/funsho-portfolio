@@ -1,7 +1,7 @@
 <template>
-  <div class="home">
+  <div>
     <Navbar />
-    home
+    contact
   </div>
 </template>
 
@@ -9,7 +9,12 @@
 import Navbar from '../components/Navbar.vue'
 
 export default {
-  name: 'HomeView',
-  components: { Navbar }
+    components:{
+        Navbar
+    }
 }
 </script>
+
+<style>
+
+</style>
