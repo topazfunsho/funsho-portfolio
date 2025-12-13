@@ -2,23 +2,29 @@
   <div class="contain">
     <div>
       <div class="hero-about">
+        <div class="hero-about-photo-1">
+            <img src="../assets/my_pic.png" alt="funsho">
+        </div>
         <div class="hero-about-text">
             <h6>Frontend Engineer</h6>
             <h1>Hello I'm <span>Funsho Alabi</span></h1>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum maxime temporibus hic ullam placeat commodi corrupti ut, facilis quisquam totam dolores, ad culpa fugiat laborum cupiditate dicta iusto ea fugit!</p>
+            <p>A dedicated Frontend Engineer with hands-on experience building
+            responsive, user-friendly web applications using modern technologies like
+            Vue.js, React, JavaScript, Tailwind CSS, and REST APIs. 
+            </p>
             <div class="flex">
-                <button>
+                <button @click="handleDownload">
                     Download cv
                     <i><ArrowDown size="20"/></i>
                 </button>
 
                 <div class="social">
-                    <i><Instagram size="30" /></i>
-                    <i><Linkedin size="30" /></i>
+                    <i><Instagram @click="handleIntagram" size="30" /></i>
+                    <i><Linkedin @click="handleLinkedIn" size="30" /></i>
                 </div>
             </div>
         </div>
-        <div class="hero-about-photo">
+        <div class="hero-about-photo-2">
             <img src="../assets/my_pic.png" alt="funsho">
         </div>
       </div>
@@ -47,19 +53,36 @@
 
 <script>
 import { ArrowDown, Instagram, Linkedin } from "lucide-vue-next";
+import { onMounted } from 'vue';
 
 export default {
     components:{
         ArrowDown,
         Instagram,
         Linkedin,
+    },
+    methods:{
+        handleInstagram(){
+            window.location.href = "https://"
+        },
+        handleLinkedIn(){
+            window.location.href = "https://"
+        },
+        handleDownload(){
+
+        }
+    },
+    setup(){
+        onMounted(()=>{
+            console.log("Mounted")
+        })
     }
 };
 </script>
 
 <style>
 .contain {
-  padding: 2% 15% 0% 15%;
+  padding: 1% 15% 0% 15%;
   height: 85vh;
   display: flex;
   justify-content: center;
@@ -68,6 +91,7 @@ export default {
 .hero-about {
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 .hero-about-text{
     flex-basis: 50%;
@@ -118,12 +142,16 @@ export default {
 .social i{
     color: #009833;
 }
-.hero-about-photo{
+.hero-about-photo-2, .hero-about-photo-1{
     border: 3px dashed #009833;
+    /* border-image: repeating-linear-gradient(90deg, #009833 0 10px, transparent 10px 18px, #009833 18px 30px, transparent 30px 40px) 1; */
     border-radius: 50%;
     overflow: hidden;
     height: 300px;
     width: 300px;
+}
+.hero-about-photo-1{
+    display: none;
 }
 .flex span{
     display: block;
@@ -137,11 +165,20 @@ export default {
     font-size: 14px;
     letter-spacing: 1px;
 }
-.hero-about-photo img{
+.hero-about-photo-2 img, .hero-about-photo-1 img{
     width: 350px;
 }
 @media(max-width: 600px){
-    .hero-about-photo{
+    .hero-about{
+        display: block;
+    }
+    .hero-about-photo-1{
+        display: block;
+        justify-self: center;
+        margin-top: 2%;
+        margin-bottom: -2%;
+    }
+    .hero-about-photo-2{
         display: none;
     }
     .hero-about-text{
@@ -149,10 +186,17 @@ export default {
     }
     .experience{
         display: block;
+        justify-self: center;
     }
+    
     .contain{
         height: auto;
         padding: 1% 5%;
+    }
+    .experience{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
     }
     
 }

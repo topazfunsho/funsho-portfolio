@@ -3,7 +3,7 @@
     <div class="search-modal">
        <div class="container">
         <div><i @click="closeModal"><X :size="70" /></i></div>
-         <form @submit.prevent="handleSearch">
+         <form @submit.prevent="handleSearch" class="search-form">
             <input type="text" v-model="search">
             <button @click="handleSearch" class="desktop-search-button">
                 search
@@ -71,7 +71,7 @@ export default {
     .container i{
         color: #fff;
     }
-    form{
+    .search-form{
         justify-self: center;
     }
     .search-modal, form{
@@ -98,7 +98,7 @@ export default {
         border-radius: 20px;
         cursor: pointer;
     }
-    form{
+    .search-form{
         width: 60%;
         margin-top: 30px;
     }
