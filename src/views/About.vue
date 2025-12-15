@@ -10,13 +10,13 @@
           dignissimos distinctio animi vero ex reprehenderit culpa earum magni,
           doloremque sint temporibus! Laboriosam!
         </p>
-        <button>Experience</button>
-        <button>Education</button>
-        <button>Skills</button>
-        <button>About me</button>
+        <button @click="handleExperience">Experience</button>
+        <button @click="handleEducation">Education</button>
+        <button @click="handleSkills">Skills</button>
+        <button @click="handleAboutDetails">About me</button>
       </div>
       <div class="right">
-        <div class="experience-right" hidden>
+        <div class="experience-right" v-if="showExperience">
           <h2>My Experience</h2> 
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas sunt
@@ -48,7 +48,7 @@
         </div>
 
 
-        <div class="education" hidden>
+        <div class="education" v-if="showEducation">
           <h2>My education</h2>
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas sunt
@@ -80,37 +80,55 @@
             </div>
           </div>
         </div>
-        <div class="skills">
+        <div class="skills" v-if="showSkills">
           <h2>My Skills</h2>
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas sunt
             in vero sequi optio nihil quo, praesentium repellendus libero non
             reprehenderit dolores porro ea illo vitae ab quasi fugiat rerum!
           </p>
-          <div class="flex-2">
+          <div class="flex-2 icons">
             <div class="card">
-              Python
+              <div>
+                <Icon icon="logos:python" />
+                <p>Python</p>
+              </div>
             </div>
             <div class="card">
-              React
+              <div>
+                <Icon icon="logos:react" />
+                <p>React</p>
+              </div>
             </div>
             <div class="card">
-              Vue
+              <div>
+                <Icon icon="logos:vue" />
+                <p>Vue</p>
+              </div>
             </div>
             <div class="card">
-              Django
+               <div>
+                <Icon icon="logos:django" />
+                <p>Django</p>
+               </div>
             </div>
             <div class="card">
-              JavaScript
+              <div>
+                <Icon icon="logos:javascript" />
+                <p>JavaScript</p>
+              </div>
             </div>
             <div class="card">
-              CSS
+              <div>
+                <Icon icon="logos:css-3" />
+                <p>Css</p>
+              </div>
             </div>
           </div>  
         </div>
 
 
-        <div class="about-details" hidden>
+        <div class="about-details" v-if="showAbout">
           <h2>About Me</h2>
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas sunt
@@ -125,11 +143,47 @@
 
 <script>
 import Navbar from "../components/Navbar.vue";
+import { Icon } from "@iconify/vue";
 
 export default {
   components: {
     Navbar,
+    Icon,
   },
+  data(){
+    return{
+      showExperience: true,
+      showEducation: false,
+      showSkills: false,
+      showAbout: false,
+    }
+  },
+  methods:{
+    handleExperience(){
+      this.showExperience = true
+      this.showEducation = false
+      this.showSkills = false
+      this.showAbout = false
+    },
+    handleEducation(){
+      this.showEducation = true
+      this.showExperience = false
+      this.showSkills = false
+      this.showAbout = false
+    },
+    handleSkills(){
+      this.showExperience = false
+      this.showEducation = false
+      this.showSkills = true
+      this.showAbout = false
+    },
+    handleAboutDetails(){
+      this.showExperience = false
+      this.showEducation = false
+      this.showSkills = false
+      this.showAbout = true
+    }
+  }
 };
 </script>
 
@@ -173,6 +227,9 @@ export default {
   letter-spacing: 1px;
 }
 .left button:hover {
+  background: #009833;
+}
+.left button.active{
   background: #009833;
 }
 .left p,
@@ -235,6 +292,15 @@ export default {
 }
 .right p{
   margin-bottom: 20px;
+}
+.icons .card{
+  display: flex;
+  font-size: 60px;
+  justify-content: center;
+  align-items: center;
+}
+.icons .card p{
+  text-align: center;
 }
 
 
