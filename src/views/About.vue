@@ -341,6 +341,7 @@ export default {
   .left p, .right p{
     font-size: 16px;
     font-weight: 400;
+    font-family: 'poppins';
     word-spacing: normal;
   }
 }

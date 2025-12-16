@@ -3,26 +3,22 @@
     <Navbar />
     <div class="contain contact-contain">
       <div class="left-contact">
+        <div v-if="isGreen" class="alert-green">{{ success }} {{ fNameError }}</div>
+        <div v-if="isRed" class="alert-red">{{ success }} {{ fNameError }}</div>
         <h2>Lets's work together</h2>
         <p>
           Have an idea or project in mind? I’d love to hear about it. let’s work together and build something amazing.
         </p>
-        <form class="contact-form">
+        <form @submit.prevent="handleSubmit" class="contact-form">
           <div class="flex">
-            <input type="text" placeholder="first name">
-            <input type="text" placeholder="last name">
+            <input type="text" placeholder="first name" v-model="fName">
+            <input type="text" placeholder="last name" v-model="lName">
           </div>
           <div class="flex">
-            <input type="email" placeholder="email">
-            <input type="number" placeholder="phone-number">
+            <input type="email" placeholder="email" v-model="email">
+            <input type="number" placeholder="phone-number" v-model="phoneNum">
           </div>
-          <select>
-            <option value="0">select</option>
-            <option value="1">React</option>
-            <option value="2">Vue</option>
-            <option value="3">Python</option>
-          </select>
-          <textarea rows="4"></textarea>
+          <textarea rows="4" v-model="message"></textarea>
           <button>Send message</button>
         </form>
       </div>
@@ -55,11 +51,81 @@ export default {
         Phone,
         Mail,
         MapPin,
+    },
+    data(){
+      return{
+        fName: '',
+        lName: '',
+        email: '',
+        phoneNum: '',
+        message: '',
+        isGreen: false,
+        success: '',
+        isRed: false,
+      }
+    },
+    methods:{
+      handleSubmit(){
+          // this.fNameError = this.fName === '' ? 'Please enter your name' : ''
+          if(this.fName === ''){
+            this.isRed = true
+            this.success = 'Please enter your name'
+            setInterval(()=>{
+              this.isRed = false
+            }, 8000)
+          }
+          else if(this.email === ''){
+            this.isRed = true
+            this.success = 'Please enter your email address'
+            setInterval(()=>{
+              this.isRed = false
+            }, 8000)
+          }
+          else if(this.phoneNum < 10){
+            this.isRed = true
+            this.success = 'Please enter a correct number'
+            setInterval(()=>{
+              this.isRed = false
+            }, 8000)
+          }
+          else if(this.message === ''){
+            this.isRed = true
+            this.success = 'Please enter a message before sending'
+            setInterval(()=>{
+              this.isRed = false
+            }, 8000)
+          }
+          else{
+            this.success = 'Message sent successfully'
+            this.isGreen = true
+            this.isRed = false
+            setInterval(()=>{
+              this.isGreen = false
+            }, 5000)
+          }
+          
+          
+        
+      }
     }
+
 }
 </script>
 
 <style>
+    .alert-green{
+      background: rgba(30, 255, 0, 0.2);
+      color: #0bd84f;
+    }
+    .alert-green, .alert-red{
+      margin-top: 5px;
+      border-radius: 5px;
+      padding: 10px;
+    }
+    .alert-red{
+      background: rgba(255, 176, 213, 0.2);
+      color: rgb(152, 2, 2);
+    }
     .left-contact{
       flex-basis: 50%;
       background: #364c61;
@@ -76,6 +142,7 @@ export default {
     .left-contact h2{
       color: #009833;
       font-size: 25px;
+      margin-top: 10px;
     }
     .right-contact{
       padding: 60px;
@@ -148,6 +215,17 @@ export default {
      }
      .right-contact{
       padding: 40px 0;
+     }
+     .left-contact p{
+      font-family: 'poppins';
+      font-size: 16px;
+      font-weight: 400;
+     }
+     .left-contact button{
+      font-size: 16px;
+     }
+     .right-contact p{
+      font-family: 'poppins';
      }
    }
 
