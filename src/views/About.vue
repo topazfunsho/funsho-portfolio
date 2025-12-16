@@ -7,10 +7,10 @@
         <p>
           As a front-end developer, I create responsive, user-friendly interfaces that turn designs into fast, functional, and engaging web experiences.
         </p>
-        <button @click="handleExperience">Experience</button>
-        <button @click="handleEducation">Education</button>
-        <button @click="handleSkills">Skills</button>
-        <button @click="handleAboutDetails">About me</button>
+        <button :class="{ active : isActive1 }" @click="handleExperience">Experience</button>
+        <button :class="{ active : isActive2 }" @click="handleEducation">Education</button>
+        <button :class="{ active : isActive3 }" @click="handleSkills">Skills</button>
+        <button :class="{ active : isActive4 }" @click="handleAboutDetails">About me</button>
       </div>
       <div class="right">
         <div class="experience-right" v-if="showExperience">
@@ -22,7 +22,8 @@
             <div class="card">
               <h4>2016-2017</h4>
               <h3>Graphics Design</h3>
-              <p class="p-flex"><span>.</span>(WTI) World Transformers International</p>
+              <!-- <p class="p-flex"><span>.</span>(WTI) World Transformers International</p> -->
+              <p><span>.</span> (WTI) World Transformers International</p>
             </div>
             <div class="card">
               <h4>2018-2019</h4>
@@ -46,9 +47,7 @@
         <div class="education" v-if="showEducation">
           <h2>My education</h2>
           <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas sunt
-            in vero sequi optio nihil quo, praesentium repellendus libero non
-            reprehenderit dolores porro ea illo vitae ab quasi fugiat rerum!
+            An overview of my education and training, which have contributed to my skill development.
           </p>
           <div class="flex">
             <div class="card">
@@ -78,9 +77,7 @@
         <div class="skills" v-if="showSkills">
           <h2>My Skills</h2>
           <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas sunt
-            in vero sequi optio nihil quo, praesentium repellendus libero non
-            reprehenderit dolores porro ea illo vitae ab quasi fugiat rerum!
+            Below are the programming languages and frameworks I use most frequently in building modern and efficient applications.
           </p>
           <div class="flex-2 icons">
             <div class="card">
@@ -126,9 +123,7 @@
         <div class="about-details" v-if="showAbout">
           <h2>About Me</h2>
           <p>
-            A dedicated Frontend Engineer with hands-on experience building
-            responsive, user-friendly web applications using modern technologies like
-            Vue.js, React, JavaScript, Tailwind CSS, and REST APIs. 
+            A dedicated Frontend Engineer with extensive hands-on experience designing, developing, and maintaining responsive and user-friendly web applications. I specialize in transforming UI/UX designs into clean, scalable, and maintainable code using modern frontend technologies such as Vue.js and React. With a strong foundation in JavaScript, Tailwind CSS, and RESTful API integration, I build high-performance interfaces that prioritize usability, accessibility, and cross-browser compatibility. I am passionate about writing efficient code, optimizing user experiences, and collaborating closely with designers and backend teams to deliver reliable, visually appealing, and business-driven digital solutions.
           </p>
         </div>
       </div>
@@ -152,7 +147,10 @@ export default {
       showEducation: false,
       showSkills: false,
       showAbout: false,
-      isActive: ref(true),
+      isActive1: ref(true),
+      isActive2: ref(false),
+      isActive3: ref(false),
+      isActive4: ref(false),
     }
   },
   methods:{
@@ -161,25 +159,39 @@ export default {
       this.showEducation = false
       this.showSkills = false
       this.showAbout = false
+      this.isActive2 = false
+      this.isActive3 = false
+      this.isActive4 = false
     },
     handleEducation(){
       this.showEducation = true
       this.showExperience = false
       this.showSkills = false
       this.showAbout = false
-      this.isActive = true
+      this.isActive1 = false
+      this.isActive2 = true
+      this.isActive3 = false
+      this.isActive4 = false
     },
     handleSkills(){
       this.showExperience = false
       this.showEducation = false
       this.showSkills = true
       this.showAbout = false
+      this.isActive1 = false
+      this.isActive2 = false
+      this.isActive3 = true
+      this.isActive4 = false
     },
     handleAboutDetails(){
       this.showExperience = false
       this.showEducation = false
       this.showSkills = false
       this.showAbout = true
+      this.isActive1 = false
+      this.isActive2 = false
+      this.isActive3 = false
+      this.isActive4 = true
     }
   }
 };
@@ -274,9 +286,7 @@ export default {
 .right .card p{
   font-size: 12px;
 }
-.p-flex{
-  display: flex;
-}
+
 .right .card h4{
   color: #009833;
   margin-bottom: 10px;
@@ -286,11 +296,16 @@ export default {
   font-size: 18px;
   margin-bottom: 15px;
 }
-.p-flex span{
-  color: #009833;
-  margin-right: 10px;
-  font-size: 50px;
+.right .flex .card p{
+  display: flex;
 }
+.right .flex .card span{
+  color: #009833;
+  margin-right: 5px;
+  font-size: 50px;
+  margin-top: -15px;
+}
+
 .right p{
   margin-bottom: 20px;
 }
