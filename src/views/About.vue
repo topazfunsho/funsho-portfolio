@@ -5,10 +5,7 @@
       <div class="left">
         <h1>Why hire me?</h1>
         <p>
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nesciunt
-          dolores aliquam architecto mollitia veniam amet placeat sed
-          dignissimos distinctio animi vero ex reprehenderit culpa earum magni,
-          doloremque sint temporibus! Laboriosam!
+          As a front-end developer, I create responsive, user-friendly interfaces that turn designs into fast, functional, and engaging web experiences.
         </p>
         <button @click="handleExperience">Experience</button>
         <button @click="handleEducation">Education</button>
@@ -19,9 +16,7 @@
         <div class="experience-right" v-if="showExperience">
           <h2>My Experience</h2> 
           <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas sunt
-            in vero sequi optio nihil quo, praesentium repellendus libero non
-            reprehenderit dolores porro ea illo vitae ab quasi fugiat rerum!
+            Over the past three years, I have specialized in turning UI/UX designs into clean, efficient, and user-focused digital experiences.
           </p>
           <div class="flex">
             <div class="card">
@@ -131,9 +126,9 @@
         <div class="about-details" v-if="showAbout">
           <h2>About Me</h2>
           <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas sunt
-            in vero sequi optio nihil quo, praesentium repellendus libero non
-            reprehenderit dolores porro ea illo vitae ab quasi fugiat rerum!
+            A dedicated Frontend Engineer with hands-on experience building
+            responsive, user-friendly web applications using modern technologies like
+            Vue.js, React, JavaScript, Tailwind CSS, and REST APIs. 
           </p>
         </div>
       </div>
@@ -144,6 +139,7 @@
 <script>
 import Navbar from "../components/Navbar.vue";
 import { Icon } from "@iconify/vue";
+import { ref } from "vue"
 
 export default {
   components: {
@@ -156,6 +152,7 @@ export default {
       showEducation: false,
       showSkills: false,
       showAbout: false,
+      isActive: ref(true),
     }
   },
   methods:{
@@ -170,6 +167,7 @@ export default {
       this.showExperience = false
       this.showSkills = false
       this.showAbout = false
+      this.isActive = true
     },
     handleSkills(){
       this.showExperience = false
@@ -188,6 +186,7 @@ export default {
 </script>
 
 <style>
+
 .left {
   flex-basis: 40%;
   padding: 10px;
@@ -222,7 +221,7 @@ export default {
   color: #fff;
   width: 100%;
   cursor: pointer;
-  font-size: 15px;
+  font-size: 20px;
   font-weight: 600;
   letter-spacing: 1px;
 }
@@ -235,8 +234,10 @@ export default {
 .left p,
 .right p {
   font-size: 14px;
-  line-height: 20px;
+  line-height: 22px;
   font-family: "lato";
+  word-spacing: 3px;
+  color: #dddddd;
 }
 .left h1 {
   font-size: 40px;
@@ -295,7 +296,7 @@ export default {
 }
 .icons .card{
   display: flex;
-  font-size: 60px;
+  font-size: 40px;
   justify-content: center;
   align-items: center;
 }
@@ -321,6 +322,11 @@ export default {
   }
   .right{
     overflow: visible;
+  }
+  .left p, .right p{
+    font-size: 16px;
+    font-weight: 400;
+    word-spacing: normal;
   }
 }
 </style>

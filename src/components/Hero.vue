@@ -245,7 +245,7 @@ export default {
     }
     .hero-about-text p{
         font-size: 20px;
-        font-family: '';
+        font-weight: bold;
     }
     .experience p{
         font-size: 20px;

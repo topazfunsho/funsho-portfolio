@@ -5,7 +5,7 @@
       <div class="left-contact">
         <h2>Lets's work together</h2>
         <p>
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vero porro excepturi perferendis, labore velit alias autem nobis possimus adipisci magni enim ab iusto maxime corrupti, inventore iste vitae aliquid veniam.
+          Have an idea or project in mind? I’d love to hear about it. let’s work together and build something amazing.
         </p>
         <form class="contact-form">
           <div class="flex">
@@ -18,9 +18,9 @@
           </div>
           <select>
             <option value="0">select</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
+            <option value="1">React</option>
+            <option value="2">Vue</option>
+            <option value="3">Python</option>
           </select>
           <textarea rows="4"></textarea>
           <button>Send message</button>
@@ -70,7 +70,8 @@ export default {
       font-family: 'lato';
       letter-spacing: 1px;
       line-height: 15px;
-      color: #cbcbcb;
+      color: #dddddd;
+      line-height: 20px;
     }
     .left-contact h2{
       color: #009833;
@@ -137,6 +138,7 @@ export default {
    .right-contact span{
     font-size: 11px;
     display: block;
+    color: #009833;
    }
 
    @media (max-width: 600px) {
